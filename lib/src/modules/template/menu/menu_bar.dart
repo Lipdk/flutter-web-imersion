@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/ui/helpers/size_extensions.dart';
 import 'menu_button.dart';
@@ -13,18 +14,29 @@ class MenuBar extends StatefulWidget {
 
 class _MenuBarState extends State<MenuBar> {
   Menu? selectedMenu;
+  var collapsed = false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: context.percentWidth(.18),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      width: collapsed ? 90 : context.percentWidth(.18),
       height: double.infinity,
       child: Column(children: [
         Align(
-          alignment: Alignment.centerRight,
+          alignment: collapsed ? Alignment.center : Alignment.centerRight,
           child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.keyboard_double_arrow_right)),
+            onPressed: () {
+              setState(() {
+                collapsed = !collapsed;
+              });
+            },
+            icon: Icon(
+              collapsed
+                  ? Icons.keyboard_double_arrow_right
+                  : Icons.keyboard_double_arrow_left,
+            ),
+          ),
         ),
         const SizedBox(height: 10),
         ListView.builder(
@@ -33,12 +45,15 @@ class _MenuBarState extends State<MenuBar> {
             itemBuilder: (context, index) {
               final menu = Menu.values[index];
               return MenuButton(
-                menu: menu, 
+                menu: menu,
                 menuSelected: selectedMenu,
                 onPressed: (Menu menu) => {
-                  setState(() {
-                    selectedMenu = menu;
-                  },)
+                  setState(
+                    () {
+                      selectedMenu = menu;
+                      Modular.to.navigate(menu.route);
+                    },
+                  )
                 },
               );
             })

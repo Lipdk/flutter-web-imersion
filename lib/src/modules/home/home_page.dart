@@ -9,25 +9,24 @@ import '../../core/ui/styles/text_styles.dart';
 import '../template/base_layout.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({ super.key });
+  const HomePage({super.key});
 
-   @override
-   State<HomePage> createState() => _HomePageState();
+  @override
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with Loader, Messages{
+class _HomePageState extends State<HomePage> with Loader, Messages {
   @override
   Widget build(BuildContext context) {
-       return BaseLayout(
-           body: Container(
-            // child: Text(Env.instance.get('backend_base_url')),
-            child: Container(
-              color: context.colors.primary,
-              width: context.percentWidth(.5),
-              height: context.percentHeight(1),
-              child: Text('Texto extra bold', style: context.textStyles.textExtraBold),
-            ),
-           ),
-       );
+    return Container(
+      // child: Text(Env.instance.get('backend_base_url')),
+      child: Container(
+        color: context.colors.primary,
+        width: context.percentWidth(.5),
+        height: context.percentHeight(1),
+        child:
+            Text('Texto extra bold', style: context.textStyles.textExtraBold),
+      ),
+    );
   }
 }
