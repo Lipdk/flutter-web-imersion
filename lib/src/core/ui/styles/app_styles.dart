@@ -21,6 +21,10 @@ class AppStyles {
     backgroundColor: ColorsApp.instance.primary,
     textStyle: TextStyles.instance.textButtonLabel,
   );
+
+  ButtonStyle get textButton => TextButton.styleFrom(
+    textStyle: TextStyles.instance.textMedium.copyWith(color: ColorsApp.instance.primary),
+  );
 }
 
 extension AppStylesExtension on BuildContext {

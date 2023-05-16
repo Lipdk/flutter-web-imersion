@@ -27,6 +27,14 @@ class ThemeConfig {
       secondary: ColorsApp.instance.secondary,
     ),
 
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: AppStyles.instance.textButton,
+    ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: AppStyles.instance.textButton,
+    ),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: AppStyles.instance.primaryButton,
     ),
